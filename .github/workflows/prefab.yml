@@ -1,0 +1,25 @@
+# Prefab — 회로도와 펌웨어가 어긋난 곳을 보드 발주 전에 찾습니다.
+#
+# 이 파일은 prefab-web.onrender.com 이 만들어 준 것입니다.
+# 경로가 틀렸으면 아래 값을 고치세요.
+
+name: 회로도와 코드 대조
+
+on:
+  pull_request:
+
+jobs:
+  prefab:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: PNU-2026-AI-Hackathon/pnuai-c-06-EECE/.github/actions/prefab-check@main
+        with:
+          api-key: ${{ secrets.PREFAB_API_KEY }}
+          netlist: hardware/board.net.xml
+          firmware: firmware
+          bom: hardware/bom.csv
+          # 치명 발견이 있으면 빨간불이 켜집니다.
+          # 경고까지 막으려면 warning 으로 바꾸세요.
+          fail-on: critical
