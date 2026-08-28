@@ -12,7 +12,7 @@
     D5 = LOW(0V)    -> 트랜지스터 OFF -> 릴레이 IN = HIGH(5V) -> 릴레이 OFF
 */
 
-#define PRESENCE_PIN D4
+#define PRESENCE_PIN D2
 #define RELAY_PIN    D5
 
 bool relayIsOn = false;
